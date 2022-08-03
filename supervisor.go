@@ -11,16 +11,13 @@ type Supervisor struct {
 	client *xmlrpc.Client
 }
 
-func New(url string) *Supervisor {
+func New(url string) (*Supervisor, error) {
 
-	client, err := xmlrpc.NewClient("http://localhost:9001/RPC2", nil)
-	if err != nil {
-		panic(err)
-	}
+	client, err := xmlrpc.NewClient(url, nil)
 	return &Supervisor{
 		rpcURL: url,
 		client: client,
-	}
+	}, err
 }
 
 // ListMethods 列出所有的方法
