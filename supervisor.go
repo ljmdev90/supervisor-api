@@ -165,3 +165,21 @@ func (s *Supervisor) StopAllProcesses() (info []processStatusInfo, err error) {
 	json.Unmarshal(b, &info)
 	return
 }
+
+// StartProcessGroup 通过进程组名字启动进程组
+func (s *Supervisor) StartProcessGroup(name string) (info []processStatusInfo, err error) {
+	var ret any
+	err = s.client.Call("supervisor.startProcessGroup", []any{name, true}, &ret)
+	b, _ := json.Marshal(ret)
+	json.Unmarshal(b, &info)
+	return
+}
+
+// StopProcessGroup 通过进程组名字停止进程组
+func (s *Supervisor) StopProcessGroup(name string) (info []processStatusInfo, err error) {
+	var ret any
+	err = s.client.Call("supervisor.stopProcessGroup", []any{name, true}, &ret)
+	b, _ := json.Marshal(ret)
+	json.Unmarshal(b, &info)
+	return
+}

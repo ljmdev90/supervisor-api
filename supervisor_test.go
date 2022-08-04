@@ -21,3 +21,21 @@ func TestListMethods(t *testing.T) {
 		t.Errorf("ListMethods error: %s", err)
 	}
 }
+
+func TestStartProcessGroup(t *testing.T) {
+	list, err := sv.StartProcessGroup("cat")
+	if err != nil {
+		t.Errorf("StartProcessGroup error: %s", err)
+	} else {
+		t.Log(len(list), list)
+	}
+}
+
+func TestStopProcessGroup(t *testing.T) {
+	list, err := sv.StopProcessGroup("cat")
+	if err != nil {
+		t.Errorf("StopProcessGroup error: %s", err)
+	} else {
+		t.Log(len(list), list)
+	}
+}
